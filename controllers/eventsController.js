@@ -5,6 +5,12 @@ const eventModel = require('../models/eventModel');
 
 const getAllEvents = async (req, res) => {
     try {
+
+        // const currentDate = new Date();
+        // const upcomingCourses = await eventModel.find({
+        // date: { $gt: currentDate }
+        // });
+
         const events = await eventModel.find()
 
         res.status(200).send(events)
@@ -85,21 +91,16 @@ const deleteEvent = async (req, res) => {
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
-
-
-
 }
 
 const registerForEvent = async (req, res) => {
     try {
-
         const { id } = req.params;
         const event = await eventModel.findById(id);
         const { title, date, time } = event
         if (!event) {
             return res.status(404).send({ msg: 'Event not found' });
         }
-
         if (event.participants.includes(req.user._id)) {
             return res.status(400).send({ msg: 'Already registered' });
         }

@@ -26,3 +26,4 @@ const eventRegistrationMessage = (username, eventName, eventDate, eventTime) => 
   };
 
   module.exports = {eventRegistrationMessage}
+  

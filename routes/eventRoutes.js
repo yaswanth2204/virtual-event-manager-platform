@@ -9,5 +9,4 @@ router.put('/:id', authMiddleware, roleMiddleware('organizer'), updateEvent);
 router.delete('/:id', authMiddleware, roleMiddleware('organizer'), deleteEvent);
 router.post('/:id/register', authMiddleware, registerForEvent);
 
-
 module.exports = router
